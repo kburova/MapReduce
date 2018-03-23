@@ -1,0 +1,14 @@
+PATH=/usr/local/hadoop-2.7.3:$PATH
+PATH=/usr/local/hadoop-2.7.3/bin:$PATH
+PATH=/usr/local/hadoop-2.7.3/share/hadoop/tools/lib/:$PATH
+
+sudo -s /usr/local/hadoop-2.7.3/bin/hadoop fs -mkdir /user/kburova
+sudo -s /usr/local/hadoop-2.7.3/bin/hadoop fs -mkdir /user/kburova/books
+sudo -s /usr/local/hadoop-2.7.3/bin/hadoop fs -chmod 777 /user/
+sudo -s /usr/local/hadoop-2.7.3/bin/hadoop fs -chmod 777 /user/kburova
+sudo -s /usr/local/hadoop-2.7.3/bin/hadoop fs -chmod 777 /user/kburova/books/
+hadoop fs -put books/* /user/kburova/books/
+
+hadoop jar /usr/local/hadoop-2.7.3/share/hadoop/tools/lib/hadoop-streaming-2.7.3.jar -files /users/kburova/mapper.py,/users/kburova/reducer.py -mapper mapper.py -reducer reducer.py -input /user/kburova/books/ -output /user/kburova/output
+
+hadoop fs -get /user/kburova/output/part-00000 /users/kburova/
