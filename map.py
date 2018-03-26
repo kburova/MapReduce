@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """map.py"""
 
 import sys
@@ -10,11 +11,9 @@ if __name__ == "__main__":
     offset = os.environ["map_input_start"]    
     length = os.environ["map_input_length"]    
     
-    text = sys.stdin.read(length)
-    text = text.strip()
-
-    words = text.split()
-
-    for word in words:
-        print('{0},{1}:{2}'.format(word,document_name,offset))
-        offset += len(word)+1
+    line_count = 0
+    for line in sys.stdin:
+        words = line.strip().split()
+        for word in words:
+            print('{0},{1},{2}'.format(word,document_name,line_count))
+        line_count += 1

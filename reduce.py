@@ -1,21 +1,15 @@
 #!/usr/bin/env python
+
 """reduce.py"""
 
 import sys
 
-target_key = None
-count = 0
+if __name__ == "__main__":
+    lines = []
+    for line in sys.stdin:
+        lines.append(line.strip())
 
-for line in sys.stdin:
-    doc,key,value = line.strip().split(',')
+    lines = sorted(lines)
 
-    if target_key == key:
-        count += int(value)
-    else:
-        if target_key:
-            print('{0},{1},{2}'.format(doc,target_key,count))
-        target_key = key
-        count = int(value)
-
-if target_key == key:
-    print('{0},{1},{2}'.format(doc,target_key,count))
+    for line in lines:
+        print(line)
