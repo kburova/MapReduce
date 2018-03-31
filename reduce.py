@@ -5,9 +5,9 @@
 import sys
 
 if __name__ == "__main__":
-    lines = []
+    lines = set()
     for line in sys.stdin:
-        lines.append(line.strip())
+        lines.add(line.strip())
 
     lines = sorted(lines)
 
